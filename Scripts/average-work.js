@@ -1,4 +1,4 @@
-const Blockchain = require("./BlockchainBackend/Blockchain");
+const Blockchain = require("../BlockchainBackend/Blockchain");
 const blockchain = new Blockchain();
 blockchain.addBlock({ data: "initial" });
 console.log("first block", blockchain.chain[blockchain.chain.length - 1]);
