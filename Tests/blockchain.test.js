@@ -1,6 +1,6 @@
 const Blockchain = require("../BlockchainBackend/Blockchain.js");
 const Block = require("../BlockchainBackend/Block");
-const cryptoHash = require("../BlockchainBackend/Crypto-hash");
+const cryptoHash = require("../Utils/Crypto-hash");
 describe("Blockchain", () => {
   let blockchain, newChain, originalChain;
   beforeEach(() => {
