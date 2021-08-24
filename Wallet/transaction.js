@@ -1,5 +1,5 @@
 const uuid = require("uuid");
-const { verification, verifySignature } = require("../Utils/Elliptic-curve");
+const { verifySignature } = require("../Utils/Elliptic-curve");
 
 class Transaction {
   constructor({ senderWallet, recipient, amount }) {
