@@ -3,11 +3,15 @@ const request = require("request");
 const bodyParser = require("body-parser");
 const Blockchain = require("./BlockchainBackend/Blockchain");
 const PubSub = require("./App/pubsub");
+const TransactionPool = require("./Wallet/transaction-pool");
+const Wallet = require("./Wallet/wallet");
 
 const app = express();
 const DEFAULT_PORT = 3000;
 
 const blockchain = new Blockchain();
+const transactionPool = new TransactionPool();
+const wallet = new Wallet();
 const pubsub = new PubSub({ blockchain });
 
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
@@ -24,6 +28,14 @@ app.post("/api/mineblock", (req, res) => {
   blockchain.addBlock({ data });
   pubsub.broadcastChain();
   res.json(blockchain.chain);
+});
+
+app.post("/api/transact", (req, res) => {
+  const { amount, recipient } = req.body;
+  const transaction = wallet.createTransaction({ recipient, amount });
+  transactionPool.setTransaction(transaction);
+  console.log("transactionPool", transactionPool);
+  res.json({ transaction });
 });
 
 const syncChains = () => {
