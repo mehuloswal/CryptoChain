@@ -30,7 +30,7 @@ class Transaction {
       (total, outputAmount) => total + outputAmount
     );
     if (amount !== outputTotalValue) {
-      console.error(`Inavlid Transaction from ${address}`);
+      console.error(`Invalid Transaction from ${address}`);
       return false;
     }
     if (!verifySignature({ publicKey: address, data: outputMap, signature })) {
@@ -38,6 +38,12 @@ class Transaction {
       return false;
     }
     return true;
+  }
+  update({ senderWallet, amount, recipient }) {
+    this.outputMap[recipient] = amount;
+    this.outputMap[senderWallet.publicKey] =
+      this.outputMap[senderWallet.publicKey] - amount;
+    this.input = this.createInput({ senderWallet, outputMap: this.outputMap });
   }
 }
 module.exports = Transaction;
