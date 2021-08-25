@@ -45,8 +45,11 @@ app.post("/api/transact", (req, res) => {
     return res.status(400).json({ type: "error", message: error.message });
   }
   transactionPool.setTransaction(transaction);
-  console.log("transactionPool", transactionPool);
   res.json({ type: "sucess", transaction });
+});
+
+app.get("/api/transaction-pool-map", (req, res) => {
+  res.json(transactionPool.transactionMap);
 });
 
 const syncChains = () => {
