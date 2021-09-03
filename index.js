@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const request = require("request");
 const bodyParser = require("body-parser");
 const Blockchain = require("./BlockchainBackend/Blockchain");
@@ -25,7 +26,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 setTimeout(() => pubsub.broadcastChain(), 1000);
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.get("/api/blocks", (req, res) => {
   res.json(blockchain.chain);
 });
