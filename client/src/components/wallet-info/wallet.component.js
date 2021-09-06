@@ -13,7 +13,6 @@ export const WalletInfo = () => {
           ...res,
           loading: false,
         });
-        console.log(res);
       });
     };
     mp();
