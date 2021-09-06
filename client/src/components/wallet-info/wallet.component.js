@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FetchWalletInfo } from "../../api/walletInfo";
+import "./style.css";
 
 export const WalletInfo = () => {
   // console.log(FetchWalletInfo());
@@ -22,8 +23,10 @@ export const WalletInfo = () => {
 
   return (
     <div>
-      <div>Address: {address}</div>
-      <div>Balance: {balance}</div>
+      <div className="wallet-info">
+        <div>Address: {address}</div>
+        <div>Balance: {balance}</div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FetchBlocks } from "../../api/blocks";
+import "./style.css";
+
 export const Blocks = () => {
   const [blocks, setBlocks] = useState([]);
 
@@ -17,8 +19,13 @@ export const Blocks = () => {
   return (
     <div>
       <h3>Blocks</h3>
+
       {blocks.map((block, i) => {
-        return <div key={i}>{JSON.stringify(block)}</div>;
+        return (
+          <div className="block" key={i}>
+            {JSON.stringify(block)}
+          </div>
+        );
       })}
     </div>
   );
