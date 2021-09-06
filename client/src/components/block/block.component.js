@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Transaction } from "../transaction/transaction.component";
+
 import "./style.css";
 export const Block = (props) => {
   const { timestamp, hash, data } = props.block;
@@ -9,7 +11,7 @@ export const Block = (props) => {
       ? `${stringifiedData.substring(0, 35)}...`
       : stringifiedData;
   const [dataToDisplay, setDataToDisplay] = useState(initialData);
-
+  console.log(dataToDisplay);
   const hashDisplay = `${hash.substring(0, 15)}...`;
 
   const linkName = readMore ? "Read Less << " : "Read More >> ";
@@ -17,12 +19,22 @@ export const Block = (props) => {
     <div className="block">
       <div>Hash: {hashDisplay}</div>
       <div>TimeStamp: {new Date(timestamp).toLocaleString()}</div>
-      <div>Data: {dataToDisplay}</div>
+      <div>
+        Data:{" "}
+        {typeof dataToDisplay === "string"
+          ? dataToDisplay
+          : dataToDisplay.map((transaction, i) => (
+              <div key={i}>
+                <hr />
+                <Transaction transaction={transaction} />
+              </div>
+            ))}
+      </div>
       <button
         onClick={() => {
           setReadMore(!readMore);
           if (!readMore) {
-            setDataToDisplay(stringifiedData);
+            setDataToDisplay(JSON.parse(stringifiedData));
           } else {
             setDataToDisplay(initialData);
           }
