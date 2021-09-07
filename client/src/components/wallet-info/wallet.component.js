@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FetchWalletInfo } from "../../api/walletInfo";
-import { Link } from "react-router-dom";
 
 import "./style.css";
 
@@ -25,14 +24,13 @@ export const WalletInfo = () => {
   return (
     <div>
       Welcome to the Visual Blockchain...
-      <div>
-        <Link to="/blocks">Blocks</Link>
-      </div>
+      <br />
       <br />
       <div className="wallet-info">
         <div>Address: {address}</div>
         <div>Balance: {balance}</div>
       </div>
+      <br />
     </div>
   );
 };
