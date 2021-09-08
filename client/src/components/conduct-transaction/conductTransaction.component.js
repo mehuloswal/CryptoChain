@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
 import { PostConductTransaction } from "../../api/conductTransaction";
-import "./style.css";
 
 export const ConductTransaction = () => {
+  let history = useHistory();
   const initialData = {
     recipient: "",
     amount: "",
@@ -19,7 +20,9 @@ export const ConductTransaction = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await PostConductTransaction(JSON.stringify(formData));
+      await PostConductTransaction(JSON.stringify(formData)).then(() => {
+        history.push("/transaction-pool");
+      });
     } catch (error) {
       console.log(error);
     }

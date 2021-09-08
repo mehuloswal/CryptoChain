@@ -15,6 +15,10 @@ function App() {
       <div>
         <Link to="/conduct-transaction">Conduct A Transaction</Link>
       </div>
+      <br />
+      <div>
+        <Link to="/transaction-pool">Transaction Pool</Link>
+      </div>
     </div>
   );
 }
