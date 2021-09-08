@@ -6,12 +6,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Blocks } from "./components/blocks/blocks.component";
+import { ConductTransaction } from "./components/conduct-transaction/conductTransaction.component";
 
 ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/blocks" component={Blocks} />
+      <Route
+        exact
+        path="/conduct-transaction"
+        component={ConductTransaction}
+      ></Route>
     </Switch>
   </Router>,
   document.getElementById("root")

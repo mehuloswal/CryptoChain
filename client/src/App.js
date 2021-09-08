@@ -11,6 +11,10 @@ function App() {
       <div>
         <Link to="/blocks">Blocks</Link>
       </div>
+      <br />
+      <div>
+        <Link to="/conduct-transaction">Conduct A Transaction</Link>
+      </div>
     </div>
   );
 }
