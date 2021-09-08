@@ -5,12 +5,21 @@ import { Transaction } from "../transaction/transaction.component";
 import "./style.css";
 
 export const TransactionPool = () => {
+  const POLL_INTERVAL_MS = 10000;
   const [transactionPool, setTransactionPool] = useState({});
-  useEffect(() => {
-    FetchTransactionPool().then((res) => {
+
+  useEffect(async () => {
+    await FetchTransactionPool().then((res) => {
       setTransactionPool({ ...res });
     });
+    const interval = setInterval(async () => {
+      await FetchTransactionPool().then((res) => {
+        setTransactionPool({ ...res });
+      });
+    }, POLL_INTERVAL_MS);
+    return () => clearInterval(interval);
   }, []);
+
   return (
     <div className="transaction-pool">
       <div>

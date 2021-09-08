@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-
 import { PostConductTransaction } from "../../api/conductTransaction";
+import "./style.css";
 
 export const ConductTransaction = () => {
   let history = useHistory();
